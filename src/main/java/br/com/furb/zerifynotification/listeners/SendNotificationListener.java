@@ -14,7 +14,7 @@ public class SendNotificationListener {
     @Autowired
     private EmailSenderService emailSenderService;
 
-    @RabbitListener(queues = "${rabbit.notification_queue}")
+    @RabbitListener(id = "notificationListener", queues = "${rabbit.notification_queue}")
     public void sendNotification(SendEmailInput message){
         log.info("Sending email to {}", message.userEmail());
         emailSenderService.send(message);
